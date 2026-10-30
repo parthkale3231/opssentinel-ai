@@ -1,0 +1,54 @@
+# Version control
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.env
+*.pyc
+
+# Node
+node_modules/
+dist/
+build/
+.npm
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+# Tests
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Docs
+docs/
+*.md
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.pem
+*.key
+*.crt
+secrets/
+
