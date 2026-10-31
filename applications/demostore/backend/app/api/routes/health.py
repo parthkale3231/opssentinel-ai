@@ -40,3 +40,4 @@ def readiness_check(
         "database": True,
         "service": settings.app_name,
     }
+ 

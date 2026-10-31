@@ -72,14 +72,55 @@ Recovery Verification → Incident Resolved → Grafana & Dashboard Updated
 
 ---
 
+## Phase 2: DemoStore Application
+
+Phase 2 is complete. DemoStore is a FastAPI ecommerce workload with PostgreSQL
+persistence, SQLAlchemy models, and Alembic migrations. It provides product and
+order APIs, health and readiness checks, and Prometheus-compatible request
+metrics. Docker Compose runs the API with PostgreSQL for local development.
+
+### Run DemoStore with Docker Compose
+
+From the repository root in WSL or another environment with Docker Compose:
+
+```bash
+docker compose up -d --build
+docker compose ps
+```
+
+The API is available at [http://localhost:8001](http://localhost:8001), with
+interactive API documentation at [http://localhost:8001/docs](http://localhost:8001/docs).
+The Compose setup waits for PostgreSQL to become healthy, and the API applies
+pending database migrations when it starts.
+
+Useful endpoints:
+
+| Endpoint | Purpose |
+|---|---|
+| `GET /health` | Liveness check |
+| `GET /ready` | Readiness check, including PostgreSQL connectivity |
+| `GET /metrics` | Prometheus metrics |
+| `/api/products/` | Product CRUD |
+| `/api/orders/` | Create and list orders |
+
+Run the backend tests inside the API container:
+
+```bash
+docker exec opssentinel-demostore-api pytest -v
+```
+
+See [the DemoStore backend README](applications/demostore/backend/README.md)
+for WSL virtual environment setup and additional local run instructions.
+
+---
+
 ## Project Structure
 
 ```text
 OpsSentinel AI/
 ├── applications/
-│   ├── demostore/                 # Sample microservice for chaos & incident simulation
-│   │   ├── backend/               # FastAPI sample app with failure injection endpoints
-│   │   └── Dockerfile             # Multi-stage container build
+│   ├── demostore/                 # Sample microservice for incident simulation
+│   │   └── backend/               # FastAPI app, SQLAlchemy models, Alembic migrations, tests
 │   └── opssentinel/               # Core reliability platform
 │       ├── backend/               # Incident engine, AI analysis, policy validator
 │       └── frontend/              # React 18 dashboard
@@ -241,7 +282,7 @@ kubectl cluster-info --context kind-opssentinel
 |:---:|---|:---:|---|
 | **0** | **Project Initialization** |  Completed | Repository structure, CI/CD foundation, docs, ADRs, scripts |
 | **1** | **AWS Infrastructure & Terraform** |  Completed | 5 modules, dev & showcase envs, EKS 1.36, AL2023, Checkov validated |
-| **2** | **DemoStore Application** | 🟡 Up Next | Microservice backend, chaos endpoints, Prometheus metrics, Dockerfile |
+| **2** | **DemoStore Application** | ✅ Completed | FastAPI product/order APIs, PostgreSQL, Alembic migrations, health checks, Prometheus metrics, Docker Compose; 8 tests passing |
 | **3** | **Kubernetes & Helm** | ⬜ Not Started | Production manifests, Helm charts, ResourceQuotas, NetworkPolicies |
 | **4** | **CI/CD & GitOps** | ⬜ Not Started | Jenkins multibranch pipeline, ArgoCD Application CRDs |
 | **5** | **Monitoring & Observability** | ⬜ Not Started | Prometheus rules, Alertmanager routing, Grafana dashboards |
