@@ -1,0 +1,6 @@
+# Copy this file to showcase.auto.tfvars and set your public IP:
+#   cp showcase.auto.tfvars.example showcase.auto.tfvars
+#
+# Find your public IP:  curl -s https://checkip.amazonaws.com
+cluster_public_access_cidrs = ["YOUR_PUBLIC_IP/32"]
+

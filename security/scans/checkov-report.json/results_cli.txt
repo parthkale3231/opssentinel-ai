@@ -1,0 +1,634 @@
+terraform scan results:
+
+Passed checks: 59, Failed checks: 11, Skipped checks: 0
+
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /environments/dev/main.tf:24-35
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5
+Check: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+	PASSED for resource: aws.default
+	File: /environments/showcase/main.tf:24-35
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5
+Check: CKV_AWS_51: "Ensure ECR Image Tags are immutable"
+	PASSED for resource: module.ecr.aws_ecr_repository.demostore
+	File: /modules/ecr/main.tf:22-38
+	Calling File: /environments/showcase/resources.tf:20-25
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-24
+Check: CKV_AWS_163: "Ensure ECR image scanning on push is enabled"
+	PASSED for resource: module.ecr.aws_ecr_repository.demostore
+	File: /modules/ecr/main.tf:22-38
+	Calling File: /environments/showcase/resources.tf:20-25
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-8
+Check: CKV_AWS_51: "Ensure ECR Image Tags are immutable"
+	PASSED for resource: module.ecr.aws_ecr_repository.opssentinel
+	File: /modules/ecr/main.tf:46-62
+	Calling File: /environments/showcase/resources.tf:20-25
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-24
+Check: CKV_AWS_163: "Ensure ECR image scanning on push is enabled"
+	PASSED for resource: module.ecr.aws_ecr_repository.opssentinel
+	File: /modules/ecr/main.tf:46-62
+	Calling File: /environments/showcase/resources.tf:20-25
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-8
+Check: CKV_AWS_51: "Ensure ECR Image Tags are immutable"
+	PASSED for resource: module.ecr.aws_ecr_repository.opssentinel_frontend
+	File: /modules/ecr/main.tf:70-86
+	Calling File: /environments/showcase/resources.tf:20-25
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-24
+Check: CKV_AWS_163: "Ensure ECR image scanning on push is enabled"
+	PASSED for resource: module.ecr.aws_ecr_repository.opssentinel_frontend
+	File: /modules/ecr/main.tf:70-86
+	Calling File: /environments/showcase/resources.tf:20-25
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-8
+Check: CKV_AWS_38: "Ensure Amazon EKS public endpoint not accessible to 0.0.0.0/0"
+	PASSED for resource: module.eks.aws_eks_cluster.main
+	File: /modules/eks/main.tf:7-35
+	Calling File: /environments/showcase/resources.tf:29-47
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-kubernetes-policies/bc-aws-kubernetes-1
+Check: CKV_AWS_100: "Ensure AWS EKS node group does not have implicit SSH access from 0.0.0.0/0"
+	PASSED for resource: module.eks.aws_eks_node_group.main
+	File: /modules/eks/main.tf:57-92
+	Calling File: /environments/showcase/resources.tf:29-47
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-kubernetes-policies/bc-aws-kubernetes-5
+Check: CKV_AWS_393: "Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order on IAM role"
+	PASSED for resource: module.iam.aws_iam_role.eks_cluster
+	File: /modules/iam/main.tf:6-19
+	Calling File: /environments/showcase/resources.tf:14-18
+Check: CKV_AWS_61: "Ensure AWS IAM policy does not allow assume role permission across all services"
+	PASSED for resource: module.iam.aws_iam_role.eks_cluster
+	File: /modules/iam/main.tf:6-19
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.iam.aws_iam_role.eks_cluster
+	File: /modules/iam/main.tf:6-19
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+	PASSED for resource: module.iam.aws_iam_role.eks_cluster
+	File: /modules/iam/main.tf:6-19
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-44
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_cluster_policy
+	File: /modules/iam/main.tf:21-24
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_vpc_resource_controller
+	File: /modules/iam/main.tf:26-29
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_393: "Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order on IAM role"
+	PASSED for resource: module.iam.aws_iam_role.eks_nodes
+	File: /modules/iam/main.tf:32-45
+	Calling File: /environments/showcase/resources.tf:14-18
+Check: CKV_AWS_61: "Ensure AWS IAM policy does not allow assume role permission across all services"
+	PASSED for resource: module.iam.aws_iam_role.eks_nodes
+	File: /modules/iam/main.tf:32-45
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.iam.aws_iam_role.eks_nodes
+	File: /modules/iam/main.tf:32-45
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+	PASSED for resource: module.iam.aws_iam_role.eks_nodes
+	File: /modules/iam/main.tf:32-45
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-44
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_worker_node_policy
+	File: /modules/iam/main.tf:47-50
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_cni_policy
+	File: /modules/iam/main.tf:52-55
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_ecr_readonly
+	File: /modules/iam/main.tf:57-60
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_ssm_policy
+	File: /modules/iam/main.tf:63-66
+	Calling File: /environments/showcase/resources.tf:14-18
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_393: "Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order on IAM role"
+	PASSED for resource: module.irsa.aws_iam_role.opssentinel_sa
+	File: /modules/irsa/main.tf:10-33
+	Calling File: /environments/showcase/resources.tf:50-56
+Check: CKV_AWS_61: "Ensure AWS IAM policy does not allow assume role permission across all services"
+	PASSED for resource: module.irsa.aws_iam_role.opssentinel_sa
+	File: /modules/irsa/main.tf:10-33
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.irsa.aws_iam_role.opssentinel_sa
+	File: /modules/irsa/main.tf:10-33
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+	PASSED for resource: module.irsa.aws_iam_role.opssentinel_sa
+	File: /modules/irsa/main.tf:10-33
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-44
+Check: CKV_AWS_289: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+	PASSED for resource: module.irsa.aws_iam_policy.opssentinel_secrets
+	File: /modules/irsa/main.tf:36-54
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-289
+Check: CKV_AWS_287: "Ensure IAM policies does not allow credentials exposure"
+	PASSED for resource: module.irsa.aws_iam_policy.opssentinel_secrets
+	File: /modules/irsa/main.tf:36-54
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-287
+Check: CKV_AWS_63: "Ensure no IAM policies documents allow "*" as a statement's actions"
+	PASSED for resource: module.irsa.aws_iam_policy.opssentinel_secrets
+	File: /modules/irsa/main.tf:36-54
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-48
+Check: CKV_AWS_286: "Ensure IAM policies does not allow privilege escalation"
+	PASSED for resource: module.irsa.aws_iam_policy.opssentinel_secrets
+	File: /modules/irsa/main.tf:36-54
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-286
+Check: CKV_AWS_62: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+	PASSED for resource: module.irsa.aws_iam_policy.opssentinel_secrets
+	File: /modules/irsa/main.tf:36-54
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45
+Check: CKV_AWS_288: "Ensure IAM policies does not allow data exfiltration"
+	PASSED for resource: module.irsa.aws_iam_policy.opssentinel_secrets
+	File: /modules/irsa/main.tf:36-54
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-288
+Check: CKV_AWS_290: "Ensure IAM policies does not allow write access without constraints"
+	PASSED for resource: module.irsa.aws_iam_policy.opssentinel_secrets
+	File: /modules/irsa/main.tf:36-54
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-290
+Check: CKV_AWS_355: "Ensure no IAM policies documents allow "*" as a statement's resource for restrictable actions"
+	PASSED for resource: module.irsa.aws_iam_policy.opssentinel_secrets
+	File: /modules/irsa/main.tf:36-54
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-355
+Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+	PASSED for resource: module.irsa.aws_iam_role_policy_attachment.opssentinel_secrets
+	File: /modules/irsa/main.tf:56-59
+	Calling File: /environments/showcase/resources.tf:50-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+	PASSED for resource: module.vpc.aws_subnet.private[0]
+	File: /modules/vpc/main.tf:80-92
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+	PASSED for resource: module.vpc.aws_security_group.eks_cluster
+	File: /modules/vpc/main.tf:273-297
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+	PASSED for resource: module.vpc.aws_security_group.eks_cluster
+	File: /modules/vpc/main.tf:273-297
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+	PASSED for resource: module.vpc.aws_security_group.eks_cluster
+	File: /modules/vpc/main.tf:273-297
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+	PASSED for resource: module.vpc.aws_security_group.eks_cluster
+	File: /modules/vpc/main.tf:273-297
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+	PASSED for resource: module.vpc.aws_security_group.eks_cluster
+	File: /modules/vpc/main.tf:273-297
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+	PASSED for resource: module.vpc.aws_subnet.private[1]
+	File: /modules/vpc/main.tf:80-92
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+Check: CKV2_AWS_44: "Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic"
+	PASSED for resource: module.vpc.aws_route_table.public
+	File: /modules/vpc/main.tf:95-106
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-route-table-with-vpc-peering-does-not-contain-routes-overly-permissive-to-all-traffic
+Check: CKV2_AWS_44: "Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic"
+	PASSED for resource: module.vpc.aws_route_table.private[0]
+	File: /modules/vpc/main.tf:143-158
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-route-table-with-vpc-peering-does-not-contain-routes-overly-permissive-to-all-traffic
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.iam.aws_iam_role.eks_cluster
+	File: /modules/iam/main.tf:6-19
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_cluster_policy
+	File: /modules/iam/main.tf:21-24
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_vpc_resource_controller
+	File: /modules/iam/main.tf:26-29
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.iam.aws_iam_role.eks_nodes
+	File: /modules/iam/main.tf:32-45
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_worker_node_policy
+	File: /modules/iam/main.tf:47-50
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_cni_policy
+	File: /modules/iam/main.tf:52-55
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_ecr_readonly
+	File: /modules/iam/main.tf:57-60
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_56: "Ensure AWS Managed IAMFullAccess IAM policy is not used."
+	PASSED for resource: module.iam.aws_iam_role_policy_attachment.eks_ssm_policy
+	File: /modules/iam/main.tf:63-66
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-56
+Check: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+	PASSED for resource: module.vpc.aws_security_group.vpc_endpoints
+	File: /modules/vpc/main.tf:241-266
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+Check: CKV2_AWS_35: "AWS NAT Gateways should be utilized for the default route"
+	PASSED for resource: module.vpc.aws_route_table.public
+	File: /modules/vpc/main.tf:95-106
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-nat-gateways-are-utilized-for-the-default-route
+Check: CKV2_AWS_35: "AWS NAT Gateways should be utilized for the default route"
+	PASSED for resource: module.vpc.aws_route_table.private[0]
+	File: /modules/vpc/main.tf:143-158
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-nat-gateways-are-utilized-for-the-default-route
+Check: CKV2_AWS_40: "Ensure AWS IAM policy does not allow full IAM privileges"
+	PASSED for resource: module.irsa.aws_iam_policy.opssentinel_secrets
+	File: /modules/irsa/main.tf:36-54
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-40
+Check: CKV2_AWS_19: "Ensure that all EIP addresses allocated to a VPC are attached to EC2 instances"
+	PASSED for resource: module.vpc.aws_eip.nat
+	File: /modules/vpc/main.tf:120-127
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-all-eip-addresses-allocated-to-a-vpc-are-attached-to-ec2-instances
+Check: CKV_AWS_136: "Ensure that ECR repositories are encrypted using KMS"
+	FAILED for resource: module.ecr.aws_ecr_repository.demostore
+	File: /modules/ecr/main.tf:22-38
+	Calling File: /environments/showcase/resources.tf:20-25
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ecr-repositories-are-encrypted
+
+		22 | resource "aws_ecr_repository" "demostore" {
+		23 |   name                 = "${local.name_prefix}/demostore"
+		24 |   image_tag_mutability = "IMMUTABLE"
+		25 | 
+		26 |   image_scanning_configuration {
+		27 |     scan_on_push = true
+		28 |   }
+		29 | 
+		30 |   encryption_configuration {
+		31 |     encryption_type = "AES256"
+		32 |   }
+		33 | 
+		34 |   tags = {
+		35 |     Name    = "${local.name_prefix}-demostore-ecr"
+		36 |     Service = "demostore"
+		37 |   }
+		38 | }
+
+Check: CKV_AWS_136: "Ensure that ECR repositories are encrypted using KMS"
+	FAILED for resource: module.ecr.aws_ecr_repository.opssentinel
+	File: /modules/ecr/main.tf:46-62
+	Calling File: /environments/showcase/resources.tf:20-25
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ecr-repositories-are-encrypted
+
+		46 | resource "aws_ecr_repository" "opssentinel" {
+		47 |   name                 = "${local.name_prefix}/opssentinel"
+		48 |   image_tag_mutability = "IMMUTABLE"
+		49 | 
+		50 |   image_scanning_configuration {
+		51 |     scan_on_push = true
+		52 |   }
+		53 | 
+		54 |   encryption_configuration {
+		55 |     encryption_type = "AES256"
+		56 |   }
+		57 | 
+		58 |   tags = {
+		59 |     Name    = "${local.name_prefix}-opssentinel-ecr"
+		60 |     Service = "opssentinel"
+		61 |   }
+		62 | }
+
+Check: CKV_AWS_136: "Ensure that ECR repositories are encrypted using KMS"
+	FAILED for resource: module.ecr.aws_ecr_repository.opssentinel_frontend
+	File: /modules/ecr/main.tf:70-86
+	Calling File: /environments/showcase/resources.tf:20-25
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ecr-repositories-are-encrypted
+
+		70 | resource "aws_ecr_repository" "opssentinel_frontend" {
+		71 |   name                 = "${local.name_prefix}/opssentinel-frontend"
+		72 |   image_tag_mutability = "IMMUTABLE"
+		73 | 
+		74 |   image_scanning_configuration {
+		75 |     scan_on_push = true
+		76 |   }
+		77 | 
+		78 |   encryption_configuration {
+		79 |     encryption_type = "AES256"
+		80 |   }
+		81 | 
+		82 |   tags = {
+		83 |     Name    = "${local.name_prefix}-opssentinel-frontend-ecr"
+		84 |     Service = "opssentinel-frontend"
+		85 |   }
+		86 | }
+
+Check: CKV_AWS_37: "Ensure Amazon EKS control plane logging is enabled for all log types"
+	FAILED for resource: module.eks.aws_eks_cluster.main
+	File: /modules/eks/main.tf:7-35
+	Calling File: /environments/showcase/resources.tf:29-47
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-kubernetes-policies/bc-aws-kubernetes-4
+
+		7  | resource "aws_eks_cluster" "main" {
+		8  |   name     = local.cluster_name
+		9  |   version  = var.kubernetes_version
+		10 |   role_arn = var.cluster_role_arn
+		11 | 
+		12 |   vpc_config {
+		13 |     subnet_ids              = concat(var.private_subnet_ids, var.public_subnet_ids)
+		14 |     endpoint_private_access = true
+		15 |     endpoint_public_access  = length(var.cluster_public_access_cidrs) > 0
+		16 |     public_access_cidrs     = length(var.cluster_public_access_cidrs) > 0 ? var.cluster_public_access_cidrs : null
+		17 |     security_group_ids      = var.cluster_security_group_id != "" ? [var.cluster_security_group_id] : null
+		18 |   }
+		19 | 
+		20 |   access_config {
+		21 |     authentication_mode                         = "API_AND_CONFIG_MAP"
+		22 |     bootstrap_cluster_creator_admin_permissions = false
+		23 |   }
+		24 | 
+		25 |   # Enable control-plane logs; CloudWatch ingestion and storage charges may apply.
+		26 |   enabled_cluster_log_types = [
+		27 |     "api",
+		28 |     "audit",
+		29 |     "authenticator",
+		30 |   ]
+		31 | 
+		32 |   tags = {
+		33 |     Name = local.cluster_name
+		34 |   }
+		35 | }
+
+Check: CKV_AWS_339: "Ensure EKS clusters run on a supported Kubernetes version"
+	FAILED for resource: module.eks.aws_eks_cluster.main
+	File: /modules/eks/main.tf:7-35
+	Calling File: /environments/showcase/resources.tf:29-47
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-kubernetes-policies/bc-aws-339
+
+		7  | resource "aws_eks_cluster" "main" {
+		8  |   name     = local.cluster_name
+		9  |   version  = var.kubernetes_version
+		10 |   role_arn = var.cluster_role_arn
+		11 | 
+		12 |   vpc_config {
+		13 |     subnet_ids              = concat(var.private_subnet_ids, var.public_subnet_ids)
+		14 |     endpoint_private_access = true
+		15 |     endpoint_public_access  = length(var.cluster_public_access_cidrs) > 0
+		16 |     public_access_cidrs     = length(var.cluster_public_access_cidrs) > 0 ? var.cluster_public_access_cidrs : null
+		17 |     security_group_ids      = var.cluster_security_group_id != "" ? [var.cluster_security_group_id] : null
+		18 |   }
+		19 | 
+		20 |   access_config {
+		21 |     authentication_mode                         = "API_AND_CONFIG_MAP"
+		22 |     bootstrap_cluster_creator_admin_permissions = false
+		23 |   }
+		24 | 
+		25 |   # Enable control-plane logs; CloudWatch ingestion and storage charges may apply.
+		26 |   enabled_cluster_log_types = [
+		27 |     "api",
+		28 |     "audit",
+		29 |     "authenticator",
+		30 |   ]
+		31 | 
+		32 |   tags = {
+		33 |     Name = local.cluster_name
+		34 |   }
+		35 | }
+
+Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+	FAILED for resource: module.vpc.aws_subnet.public[0]
+	File: /modules/vpc/main.tf:64-77
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+
+		64 | resource "aws_subnet" "public" {
+		65 |   count = length(var.public_subnet_cidrs)
+		66 | 
+		67 |   vpc_id                  = aws_vpc.main.id
+		68 |   cidr_block              = var.public_subnet_cidrs[count.index]
+		69 |   availability_zone       = var.availability_zones[count.index]
+		70 |   map_public_ip_on_launch = true
+		71 | 
+		72 |   tags = {
+		73 |     Name                                             = "${local.name_prefix}-public-${count.index + 1}"
+		74 |     "kubernetes.io/cluster/${local.name_prefix}-eks" = "shared"
+		75 |     "kubernetes.io/role/elb"                         = "1"
+		76 |   }
+		77 | }
+
+Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+	FAILED for resource: module.vpc.aws_security_group.eks_cluster
+	File: /modules/vpc/main.tf:273-297
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+
+		273 | resource "aws_security_group" "eks_cluster" {
+		274 |   name        = "${local.name_prefix}-eks-cluster-sg"
+		275 |   description = "Security group for EKS cluster control plane"
+		276 |   vpc_id      = aws_vpc.main.id
+		277 | 
+		278 |   ingress {
+		279 |     description = "Allow HTTPS from within VPC"
+		280 |     from_port   = 443
+		281 |     to_port     = 443
+		282 |     protocol    = "tcp"
+		283 |     cidr_blocks = [var.vpc_cidr]
+		284 |   }
+		285 | 
+		286 |   egress {
+		287 |     description = "Allow all outbound traffic"
+		288 |     from_port   = 0
+		289 |     to_port     = 0
+		290 |     protocol    = "-1"
+		291 |     cidr_blocks = ["0.0.0.0/0"]
+		292 |   }
+		293 | 
+		294 |   tags = {
+		295 |     Name = "${local.name_prefix}-eks-cluster-sg"
+		296 |   }
+		297 | }
+
+Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+	FAILED for resource: module.vpc.aws_subnet.public[1]
+	File: /modules/vpc/main.tf:64-77
+	Calling File: /environments/showcase/resources.tf:1-12
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+
+		64 | resource "aws_subnet" "public" {
+		65 |   count = length(var.public_subnet_cidrs)
+		66 | 
+		67 |   vpc_id                  = aws_vpc.main.id
+		68 |   cidr_block              = var.public_subnet_cidrs[count.index]
+		69 |   availability_zone       = var.availability_zones[count.index]
+		70 |   map_public_ip_on_launch = true
+		71 | 
+		72 |   tags = {
+		73 |     Name                                             = "${local.name_prefix}-public-${count.index + 1}"
+		74 |     "kubernetes.io/cluster/${local.name_prefix}-eks" = "shared"
+		75 |     "kubernetes.io/role/elb"                         = "1"
+		76 |   }
+		77 | }
+
+Check: CKV2_AWS_12: "Ensure the default security group of every VPC restricts all traffic"
+	FAILED for resource: module.vpc.aws_vpc.main
+	File: /modules/vpc/main.tf:6-52
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4
+
+		6  | resource "aws_vpc" "main" {
+		7  |   cidr_block           = var.vpc_cidr
+		8  |   enable_dns_hostnames = true
+		9  |   enable_dns_support   = true
+		10 | 
+		11 |   lifecycle {
+		12 |     precondition {
+		13 |       condition = (
+		14 |         length(var.public_subnet_cidrs) ==
+		15 |         length(var.availability_zones)
+		16 |       )
+		17 |       error_message = "Public subnet count must match availability zone count."
+		18 |     }
+		19 | 
+		20 |     precondition {
+		21 |       condition = (
+		22 |         length(var.private_subnet_cidrs) ==
+		23 |         length(var.availability_zones)
+		24 |       )
+		25 |       error_message = "Private subnet count must match availability zone count."
+		26 |     }
+		27 | 
+		28 |     precondition {
+		29 |       condition = (
+		30 |         var.single_nat_gateway ||
+		31 |         length(var.public_subnet_cidrs) == length(var.private_subnet_cidrs)
+		32 |       )
+		33 |       error_message = "Multi-NAT requires matching public and private subnet counts."
+		34 |     }
+		35 | 
+		36 |     precondition {
+		37 |       condition = (
+		38 |         length(distinct(concat(
+		39 |           var.public_subnet_cidrs,
+		40 |           var.private_subnet_cidrs
+		41 |         ))) ==
+		42 |         length(var.public_subnet_cidrs) + length(var.private_subnet_cidrs)
+		43 |       )
+		44 |       error_message = "Subnet CIDRs must be distinct."
+		45 |     }
+		46 |   }
+		47 | 
+		48 |   tags = {
+		49 |     Name                                             = "${local.name_prefix}-vpc"
+		50 |     "kubernetes.io/cluster/${local.name_prefix}-eks" = "shared"
+		51 |   }
+		52 | }
+
+Check: CKV2_AWS_11: "Ensure VPC flow logging is enabled in all VPCs"
+	FAILED for resource: module.vpc.aws_vpc.main
+	File: /modules/vpc/main.tf:6-52
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging
+
+		6  | resource "aws_vpc" "main" {
+		7  |   cidr_block           = var.vpc_cidr
+		8  |   enable_dns_hostnames = true
+		9  |   enable_dns_support   = true
+		10 | 
+		11 |   lifecycle {
+		12 |     precondition {
+		13 |       condition = (
+		14 |         length(var.public_subnet_cidrs) ==
+		15 |         length(var.availability_zones)
+		16 |       )
+		17 |       error_message = "Public subnet count must match availability zone count."
+		18 |     }
+		19 | 
+		20 |     precondition {
+		21 |       condition = (
+		22 |         length(var.private_subnet_cidrs) ==
+		23 |         length(var.availability_zones)
+		24 |       )
+		25 |       error_message = "Private subnet count must match availability zone count."
+		26 |     }
+		27 | 
+		28 |     precondition {
+		29 |       condition = (
+		30 |         var.single_nat_gateway ||
+		31 |         length(var.public_subnet_cidrs) == length(var.private_subnet_cidrs)
+		32 |       )
+		33 |       error_message = "Multi-NAT requires matching public and private subnet counts."
+		34 |     }
+		35 | 
+		36 |     precondition {
+		37 |       condition = (
+		38 |         length(distinct(concat(
+		39 |           var.public_subnet_cidrs,
+		40 |           var.private_subnet_cidrs
+		41 |         ))) ==
+		42 |         length(var.public_subnet_cidrs) + length(var.private_subnet_cidrs)
+		43 |       )
+		44 |       error_message = "Subnet CIDRs must be distinct."
+		45 |     }
+		46 |   }
+		47 | 
+		48 |   tags = {
+		49 |     Name                                             = "${local.name_prefix}-vpc"
+		50 |     "kubernetes.io/cluster/${local.name_prefix}-eks" = "shared"
+		51 |   }
+		52 | }
+
+Check: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+	FAILED for resource: module.vpc.aws_security_group.eks_cluster
+	File: /modules/vpc/main.tf:273-297
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+
+		273 | resource "aws_security_group" "eks_cluster" {
+		274 |   name        = "${local.name_prefix}-eks-cluster-sg"
+		275 |   description = "Security group for EKS cluster control plane"
+		276 |   vpc_id      = aws_vpc.main.id
+		277 | 
+		278 |   ingress {
+		279 |     description = "Allow HTTPS from within VPC"
+		280 |     from_port   = 443
+		281 |     to_port     = 443
+		282 |     protocol    = "tcp"
+		283 |     cidr_blocks = [var.vpc_cidr]
+		284 |   }
+		285 | 
+		286 |   egress {
+		287 |     description = "Allow all outbound traffic"
+		288 |     from_port   = 0
+		289 |     to_port     = 0
+		290 |     protocol    = "-1"
+		291 |     cidr_blocks = ["0.0.0.0/0"]
+		292 |   }
+		293 | 
+		294 |   tags = {
+		295 |     Name = "${local.name_prefix}-eks-cluster-sg"
+		296 |   }
+		297 | }
+

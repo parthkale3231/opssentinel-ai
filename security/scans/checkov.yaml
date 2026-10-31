@@ -1,0 +1,29 @@
+# Checkov configuration for OpsSentinel AI Terraform
+# Run: checkov -d infrastructure/terraform/ --config-file security/scans/checkov.yaml
+
+directory:
+  - infrastructure/terraform/
+
+framework:
+  - terraform
+
+# Checks to skip with documented justification
+skip-check:
+  # CKV_AWS_58: EKS secrets encryption — requires a KMS key with associated
+  # monthly cost. Planned for production hardening (Phase 10). Dev/showcase
+  # environments use default etcd encryption provided by EKS.
+  - CKV_AWS_58
+
+  # Note: CKV_AWS_130 (EKS public endpoint) is NO LONGER suppressed because
+  # public_access_cidrs is now restricted via .auto.tfvars (not 0.0.0.0/0).
+  #
+  # Note: CKV2_AWS_5 (unattached SG) is NO LONGER suppressed because the
+  # dead eks_nodes SG was removed and eks_cluster SG is attached to the cluster.
+
+output:
+  - cli
+  - json
+
+output-file-path: security/scans/checkov-report.json
+
+soft-fail: false

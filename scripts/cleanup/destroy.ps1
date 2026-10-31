@@ -3,6 +3,7 @@
 # Safely destroy AWS infrastructure and clean up resources
 
 param(
+    [ValidateSet("dev", "showcase")]
     [string]$Environment = "dev",
     [switch]$Force
 )
@@ -26,6 +27,11 @@ if (-not $Force) {
     }
 }
 
+if (-not (Test-Path $TF_DIR)) {
+    Write-Host "Directory $TF_DIR not found. Aborting." -ForegroundColor Red
+    exit 1
+}
+
 Write-Host "Step 1: Reviewing Terraform state..." -ForegroundColor Cyan
 Set-Location $TF_DIR
 terraform state list
@@ -33,6 +39,10 @@ terraform state list
 Write-Host ""
 Write-Host "Step 2: Running terraform destroy..." -ForegroundColor Cyan
 terraform destroy -auto-approve
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Terraform destroy failed. Check resources in AWS console." -ForegroundColor Red
+    exit 1
+}
 
 Write-Host ""
 Write-Host "Step 3: Verifying cleanup..." -ForegroundColor Cyan
@@ -44,5 +54,5 @@ Write-Host "    - VPC and networking" -ForegroundColor Yellow
 Write-Host "    - ECR images (retain or clean)" -ForegroundColor Yellow
 Write-Host "    - S3 Terraform state (retain)" -ForegroundColor Yellow
 Write-Host ""
+Write-Host "Infrastructure destroyed successfully." -ForegroundColor Green
 Write-Host "Review AWS Billing to confirm no unexpected charges." -ForegroundColor Green
-
