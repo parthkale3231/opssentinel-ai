@@ -10,7 +10,6 @@ from app.api.routes.health import router as health_router
 from app.api.routes.orders import router as orders_router
 from app.api.routes.products import router as products_router
 from app.config import settings
-from app.database import run_migrations
 from app.monitoring.metrics import HTTP_ERROR_COUNT, HTTP_REQUEST_COUNT, HTTP_REQUEST_LATENCY, metrics_payload
 
 app = FastAPI(
@@ -18,11 +17,6 @@ app = FastAPI(
     version=settings.app_version,
     description="DemoStore API for OpsSentinel AI demonstration and incident simulation.",
 )
-
-@app.on_event("startup")
-def startup_event() -> None:
-    run_migrations()
-
 
 @app.middleware("http")
 async def metrics_middleware(request: Request, call_next):

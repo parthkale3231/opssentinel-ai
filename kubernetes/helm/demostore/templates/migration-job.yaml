@@ -1,0 +1,85 @@
+{{- if .Values.migration.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "demostore.migrationName" . }}
+  labels:
+    {{- include "demostore.labels" . | nindent 4 }}
+    app.kubernetes.io/component: migration
+  annotations:
+    helm.sh/hook: post-install,pre-upgrade
+    helm.sh/hook-weight: "0"
+    helm.sh/hook-delete-policy: before-hook-creation
+spec:
+  completions: 1
+  parallelism: 1
+  backoffLimit: {{ .Values.migration.backoffLimit }}
+  activeDeadlineSeconds: {{ .Values.migration.activeDeadlineSeconds }}
+  template:
+    metadata:
+      labels:
+        {{- include "demostore.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: migration
+    spec:
+      restartPolicy: Never
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        - name: wait-for-postgres
+          image: {{ .Values.postgres.image | quote }}
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 70
+            runAsGroup: 70
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          command:
+            - sh
+            - -c
+            - until pg_isready -h {{ include "demostore.postgresName" . }} -p {{ .Values.postgres.servicePort }} -U "$POSTGRES_USER" -d "$POSTGRES_DB"; do echo "Waiting for PostgreSQL"; sleep 2; done
+          envFrom:
+            - secretRef:
+                name: {{ include "demostore.secretName" . }}
+      containers:
+        - name: migrate
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          command:
+            - alembic
+            - upgrade
+            - head
+          env:
+            - name: DB_HOST
+              value: {{ include "demostore.postgresName" . | quote }}
+            - name: DB_PORT
+              value: {{ .Values.postgres.servicePort | quote }}
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "demostore.secretName" . }}
+                  key: POSTGRES_DB
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "demostore.secretName" . }}
+                  key: POSTGRES_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "demostore.secretName" . }}
+                  key: POSTGRES_PASSWORD
+          resources:
+            {{- toYaml .Values.migration.resources | nindent 12 }}
+{{- end }}

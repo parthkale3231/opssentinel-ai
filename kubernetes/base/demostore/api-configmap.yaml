@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demostore-api-config
+data:
+  APP_NAME: demostore
+  APP_VERSION: "1.0.0"
+  ENVIRONMENT: local
+  LOG_LEVEL: INFO

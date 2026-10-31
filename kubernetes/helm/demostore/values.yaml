@@ -1,0 +1,65 @@
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  repository: opssentinelai-demostore-api
+  tag: latest
+  pullPolicy: IfNotPresent
+
+api:
+  enabled: false
+  replicas: 2
+  selectorName: demostore-api
+  port: 8000
+  service:
+    type: ClusterIP
+    port: 8000
+  config:
+    appName: demostore
+    appVersion: "1.0.0"
+    environment: local
+    logLevel: INFO
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+postgres:
+  enabled: true
+  image: postgres:16-alpine
+  servicePort: 5432
+  selectorName: demostore-postgres
+  auth:
+    database: demostore
+    username: demostore
+    password: ""
+    existingSecret: ""
+  persistence:
+    enabled: true
+    storageClass: standard
+    accessMode: ReadWriteOnce
+    size: 2Gi
+  podSecurityContext: {}
+  containerSecurityContext: {}
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+migration:
+  enabled: true
+  backoffLimit: 3
+  activeDeadlineSeconds: 600
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi

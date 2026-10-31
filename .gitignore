@@ -126,4 +126,5 @@ logs/
 *.bak
 *.tmp
 .cache/
-*.zip
+*.zip/
+*.txt/

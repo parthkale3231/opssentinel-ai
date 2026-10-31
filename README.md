@@ -283,7 +283,7 @@ kubectl cluster-info --context kind-opssentinel
 | **0** | **Project Initialization** |  Completed | Repository structure, CI/CD foundation, docs, ADRs, scripts |
 | **1** | **AWS Infrastructure & Terraform** |  Completed | 5 modules, dev & showcase envs, EKS 1.36, AL2023, Checkov validated |
 | **2** | **DemoStore Application** | ✅ Completed | FastAPI product/order APIs, PostgreSQL, Alembic migrations, health checks, Prometheus metrics, Docker Compose; 8 tests passing |
-| **3** | **Kubernetes & Helm** | ⬜ Not Started | Production manifests, Helm charts, ResourceQuotas, NetworkPolicies |
+| **3** | **Kubernetes & Helm** | 🔄 In Progress | Local Kind workloads, dev security controls, database restore, and isolated Calico NetworkPolicy enforcement verified; resource-limit, application-auth, PDB behavior, Helm rollback, and dev ownership checks remain. See [Phase 3 runbook](docs/kubernetes-phase3.md). |
 | **4** | **CI/CD & GitOps** | ⬜ Not Started | Jenkins multibranch pipeline, ArgoCD Application CRDs |
 | **5** | **Monitoring & Observability** | ⬜ Not Started | Prometheus rules, Alertmanager routing, Grafana dashboards |
 | **6** | **Incident Management Engine** | ⬜ Not Started | FastAPI engine, PostgreSQL schema, webhook receiver, audit logs |

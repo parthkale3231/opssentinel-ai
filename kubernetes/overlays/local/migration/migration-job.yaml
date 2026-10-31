@@ -1,0 +1,64 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: demostore-migrations
+  namespace: opssentinel
+  labels:
+    app.kubernetes.io/name: demostore-migrations
+    app.kubernetes.io/part-of: demostore
+spec:
+  completions: 1
+  parallelism: 1
+  backoffLimit: 3
+  activeDeadlineSeconds: 600
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: demostore-migrations
+        app.kubernetes.io/part-of: demostore
+    spec:
+      restartPolicy: Never
+      initContainers:
+        - name: wait-for-postgres
+          image: postgres:16-alpine
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - until pg_isready -h demostore-postgres -p 5432 -U "$POSTGRES_USER" -d "$POSTGRES_DB"; do echo "Waiting for PostgreSQL"; sleep 2; done
+          envFrom:
+            - secretRef:
+                name: demostore-db-secret
+      containers:
+        - name: migrate
+          image: opssentinelai-demostore-api:latest
+          imagePullPolicy: IfNotPresent
+          command:
+            - alembic
+            - upgrade
+            - head
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: demostore-db-secret
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: demostore-db-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: demostore-db-secret
+                  key: POSTGRES_PASSWORD
+            - name: DATABASE_URL
+              value: postgresql+psycopg2://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@demostore-postgres:5432/$(POSTGRES_DB)
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi

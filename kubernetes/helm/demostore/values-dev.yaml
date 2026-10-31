@@ -1,0 +1,40 @@
+fullnameOverride: demostore
+
+image:
+  repository: opssentinelai-demostore-api
+  tag: latest
+  pullPolicy: IfNotPresent
+
+api:
+  enabled: false
+  replicas: 2
+  selectorName: demostore-api
+
+postgres:
+  enabled: true
+  image: postgres:16-alpine
+  servicePort: 5432
+  selectorName: demostore-postgres
+  auth:
+    database: demostore
+    username: demostore
+    existingSecret: demostore-db-secret
+  persistence:
+    enabled: true
+    storageClass: standard
+    accessMode: ReadWriteOnce
+    size: 2Gi
+  podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 70
+    runAsGroup: 70
+    seccompProfile:
+      type: RuntimeDefault
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+
+migration:
+  enabled: true

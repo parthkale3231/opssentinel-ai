@@ -1,0 +1,23 @@
+fullnameOverride: demostore
+
+api:
+  enabled: true
+  selectorName: demostore-api
+
+image:
+  repository: opssentinelai-demostore-api
+  tag: latest
+  pullPolicy: IfNotPresent
+
+postgres:
+  selectorName: demostore-postgres
+  auth:
+    database: demostore
+    username: demostore
+    existingSecret: demostore-db-secret
+  persistence:
+    storageClass: standard
+    size: 2Gi
+
+migration:
+  enabled: false

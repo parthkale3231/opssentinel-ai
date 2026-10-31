@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "demostore.configName" . }}
+  labels:
+    {{- include "demostore.labels" . | nindent 4 }}
+data:
+  APP_NAME: {{ .Values.api.config.appName | quote }}
+  APP_VERSION: {{ .Values.api.config.appVersion | quote }}
+  ENVIRONMENT: {{ .Values.api.config.environment | quote }}
+  LOG_LEVEL: {{ .Values.api.config.logLevel | quote }}

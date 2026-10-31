@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: demostore-postgres-ingress
+  namespace: opssentinel-dev
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: demostore-postgres
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: demostore-api
+      ports:
+        - protocol: TCP
+          port: 5432

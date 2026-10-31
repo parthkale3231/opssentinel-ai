@@ -1,10 +1,10 @@
 # OpsSentinel AI — Development Task Tracker
 
-**Project:** OpsSentinel AI  
-**Version:** 1.0  
-**Status:** Not Started  
-**Target Duration:** 8–10 Weeks  
-**Cloud:** AWS (ap-south-1)  
+**Project:** OpsSentinel AI
+**Version:** 1.0
+**Status:** Not Started
+**Target Duration:** 8–10 Weeks
+**Cloud:** AWS (ap-south-1)
 **Development Approach:** Local First → AWS Deployment
 
 ---
@@ -27,7 +27,7 @@
 
 # PHASE 0 — Project Initialization
 
-**Duration:** 1–2 Days  
+**Duration:** 1–2 Days
 **Priority:** P0
 
 ## 0.1 Repository Setup
@@ -90,7 +90,7 @@
 
 # PHASE 1 — AWS Infrastructure and Terraform
 
-**Duration:** Week 1  
+**Duration:** Week 1
 **Priority:** P0
 
 ## 1.1 AWS Account Configuration
@@ -188,7 +188,7 @@
 
 # PHASE 2 — DemoStore Application Development
 
-**Duration:** Week 2  
+**Duration:** Week 2
 **Priority:** P0
 
 ## 2.1 Application Architecture
@@ -257,72 +257,80 @@
 
 # PHASE 3 — Kubernetes and Helm
 
-**Duration:** Week 3  
+**Duration:** Week 3
 **Priority:** P0
 
 ## 3.1 Kubernetes Configuration
 
-- [ ] Create `opssentinel` namespace
-- [ ] Create DemoStore Deployment
-- [ ] Create DemoStore Service
-- [ ] Configure container ports
-- [ ] Configure readiness probes
-- [ ] Configure liveness probes
-- [ ] Configure startup probes
-- [ ] Configure CPU requests and limits
-- [ ] Configure memory requests and limits
-- [ ] Configure replica counts
-- [ ] Configure security contexts
+- [x] Create `opssentinel` namespace
+- [x] Create DemoStore Deployment
+- [x] Create DemoStore Service
+- [x] Configure container ports
+- [x] Configure readiness probes
+- [x] Configure liveness probes
+- [x] Configure startup probes
+- [x] Configure CPU requests and limits
+- [x] Configure memory requests and limits
+- [x] Configure replica counts
+- [x] Configure security contexts (validated/applied in dev only)
 
 ## 3.2 Kubernetes Security
 
-- [ ] Create ServiceAccounts
-- [ ] Create RBAC roles
-- [ ] Configure least-privilege access
-- [ ] Disable unnecessary service account token mounting
-- [ ] Configure NetworkPolicies
-- [ ] Configure ResourceQuotas
-- [ ] Configure PodDisruptionBudgets
-- [ ] Validate Kubernetes security policies
+- [x] Create dedicated ServiceAccounts for API and PostgreSQL (dev only)
+- [x] Verify least-privilege Kubernetes API access (RBAC checks deny pod and Secret access; no Roles or RoleBindings were needed)
+- [x] Disable unnecessary service account token mounting (verified absent in both workloads)
+- [x] Verify NetworkPolicy enforcement in the isolated Calico test cluster (baseline allowed, default deny blocked, labeled client allowed)
+- [x] Configure ResourceQuotas (dev namespace only)
+- [x] Configure API PodDisruptionBudget (dev only; minAvailable: 1)
+- [x] Validate Kubernetes security controls in dev and disposable test clusters
 
 ## 3.3 Helm
 
-- [ ] Create DemoStore Helm chart
-- [ ] Create `Chart.yaml`
-- [ ] Create `values.yaml`
-- [ ] Create deployment template
-- [ ] Create service template
-- [ ] Create configuration templates
-- [ ] Configure environment-specific values
-- [ ] Test Helm rendering
-- [ ] Install chart locally
-- [ ] Test Helm upgrades
+- [x] Create DemoStore Helm chart
+- [x] Create `Chart.yaml`
+- [x] Create `values.yaml`
+- [x] Create deployment template
+- [x] Create service template
+- [x] Create configuration templates
+- [x] Configure environment-specific values
+- [x] Test Helm rendering
+- [x] Install chart locally (opssentinel release)
+- [x] Test Helm upgrades (metadata-only upgrade)
 - [ ] Test Helm rollback
 
 ## 3.4 Kubernetes Testing
 
-- [ ] Verify deployment
-- [ ] Verify pod health
-- [ ] Verify service connectivity
-- [ ] Test application port forwarding
-- [ ] Test pod replacement
-- [ ] Test scaling
+- [x] Verify deployment
+- [x] Verify pod health
+- [x] Verify service connectivity
+- [x] Test application port forwarding
+- [x] Test pod replacement (dev API security rollout)
+- [x] Test API scaling from 2 to 3 replicas and restore to 2
 - [ ] Test resource limits
-- [ ] Test unauthorized API access
+- [x] Test Kubernetes RBAC authorization denials for workload ServiceAccounts
+- [ ] Test application-level unauthorized API access
 
 ### Phase 3 Acceptance Criteria
 
-- [ ] DemoStore runs in Kubernetes
-- [ ] Workloads become Ready
-- [ ] Services are accessible
-- [ ] Helm installation works
-- [ ] Security controls work
+- [x] DemoStore runs in Kubernetes
+- [x] Workloads become Ready
+- [x] Services are accessible
+- [x] Helm installation works (opssentinel namespace)
+- [x] Security controls verified (dev hardening, RBAC denials, PDB, quotas, isolated NetworkPolicy enforcement)
+
+### Remaining Phase 3 Validation
+
+- [ ] Exercise resource limits under load
+- [ ] Test application-level unauthorized API requests
+- [ ] Validate PDB behavior during a controlled disruption
+- [ ] Test Helm rollback in an approved non-production-style environment
+- [ ] Review dev resource ownership before any Helm adoption
 
 ---
 
 # PHASE 4 — CI/CD and GitOps
 
-**Duration:** Week 4  
+**Duration:** Week 4
 **Priority:** P0
 
 ## 4.1 Jenkins Setup
@@ -385,7 +393,7 @@
 
 # PHASE 5 — Monitoring and Observability
 
-**Duration:** Week 5  
+**Duration:** Week 5
 **Priority:** P0
 
 ## 5.1 Prometheus
@@ -439,7 +447,7 @@
 
 # PHASE 6 — OpsSentinel Incident Management Engine
 
-**Duration:** Week 6  
+**Duration:** Week 6
 **Priority:** P0
 
 ## 6.1 Backend Foundation
@@ -498,7 +506,7 @@
 
 # PHASE 7 — AI Diagnosis and Self-Healing
 
-**Duration:** Week 7  
+**Duration:** Week 7
 **Priority:** P0
 
 ## 7.1 Diagnosis Engine
@@ -574,7 +582,7 @@
 
 # PHASE 8 — DevSecOps and Chaos Engineering
 
-**Duration:** Week 8  
+**Duration:** Week 8
 **Priority:** P0
 
 ## 8.1 DevSecOps
@@ -629,7 +637,7 @@
 
 # PHASE 9 — Frontend Dashboard
 
-**Duration:** Week 9  
+**Duration:** Week 9
 **Priority:** P1
 
 ## 9.1 Frontend Foundation
@@ -679,7 +687,7 @@
 
 # PHASE 10 — AWS Deployment and Final Validation
 
-**Duration:** Week 10  
+**Duration:** Week 10
 **Priority:** P0
 
 ## 10.1 AWS Deployment Preparation
@@ -846,7 +854,7 @@ Before marking OpsSentinel AI complete, verify:
 | Phase 0 - Initialization | Not Started | P0 |
 | Phase 1 - AWS Infrastructure | Not Started | P0 |
 | Phase 2 - DemoStore | Not Started | P0 |
-| Phase 3 - Kubernetes | Not Started | P0 |
+| Phase 3 - Kubernetes | In Progress | P0 |
 | Phase 4 - CI/CD and GitOps | Not Started | P0 |
 | Phase 5 - Monitoring | Not Started | P0 |
 | Phase 6 - Incident Engine | Not Started | P0 |
