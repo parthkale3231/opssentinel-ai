@@ -1,0 +1,1 @@
+"""DemoStore application package."""

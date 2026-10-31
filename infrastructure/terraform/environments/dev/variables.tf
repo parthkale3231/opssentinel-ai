@@ -75,7 +75,7 @@ variable "cluster_public_access_cidrs" {
 variable "node_instance_type" {
   description = "EC2 instance type for EKS worker nodes"
   type        = string
-  default     = "t3.medium"
+  default     = "m7i-flex.large"
 }
 
 

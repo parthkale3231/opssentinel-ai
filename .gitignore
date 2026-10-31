@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.so
+*.db
+*.sqlite3
 .Python
 build/
 develop-eggs/
@@ -125,4 +127,3 @@ logs/
 *.tmp
 .cache/
 *.zip
-

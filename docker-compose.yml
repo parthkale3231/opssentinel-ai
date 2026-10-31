@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  demostore-db:
+    image: postgres:16-alpine
+    container_name: opssentinel-demostore-db
+    environment:
+      POSTGRES_DB: demostore
+      POSTGRES_USER: demostore
+      POSTGRES_PASSWORD: demostore
+    ports:
+      - "5432:5432"
+    volumes:
+      - demostore_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U demostore -d demostore"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  demostore-api:
+    build:
+      context: ./applications/demostore/backend
+    container_name: opssentinel-demostore-api
+    environment:
+      DATABASE_URL: postgresql://demostore:demostore@demostore-db:5432/demostore
+      LOG_LEVEL: INFO
+      ENVIRONMENT: local
+      APP_NAME: demostore
+      APP_VERSION: 1.0.0
+    depends_on:
+      demostore-db:
+        condition: service_healthy
+    ports:
+      - "8001:8000"
+    restart: unless-stopped
+
+volumes:
+  demostore_pgdata:
